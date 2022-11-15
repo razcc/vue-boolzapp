@@ -109,8 +109,19 @@
 
                 <!-- *Area mesaggi -->
                 <div id="mesaggiContainer">
+                    <div >
+                        <!-- Mio mesaggio -->
+                        <div>
 
+                        </div>
+
+                        <!-- Risposta -->
+                        <div>
+
+                        </div>
+                    </div>
                 </div>
+              
 
                 <!-- *Input Invio mesaggi -->
                 <div id="invioMesaggiContainer">
@@ -122,7 +133,7 @@
 
                     <!-- Input mesaggi Invio -->
                     <div class="invioMesaggi px-2">
-                        <input class="w-100" type="text" placeholder="Invia Mesaggio">
+                        <input v-model="variabileMesaggio" @keyup.enter="keyEvent" class="w-100" type="text" placeholder="Invia Mesaggio">
                     </div>
 
                     <!-- Audio icon -->
