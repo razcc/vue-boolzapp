@@ -29,6 +29,9 @@
     height: 10%;
     background-color:  rgba(234, 234, 234, 1);
 }
+.headerContainer i{
+    color: rgba(177, 177, 177, 1);
+}
 
 #notificheContainer {
     width: 100%;
@@ -59,11 +62,9 @@
     overflow: scroll;
 
 }
-.contattoSingolo{
-    
-}
+
 .contattoSingolo:hover{
-    background-color: aqua;
+    background-color: rgba(183, 188, 188, 1);
 }
 .avatarContainer{
     width: 15%;
@@ -87,5 +88,15 @@ img{
 #invioMesaggiContainer {
     width: 100%;
     height: 10%;
-    background-color: blanchedalmond;
+    background-color: rgba(243, 238, 234, 1);
+    display: flex;
+    align-items: center;
+}
+
+.microphoneContainer,
+.smileContainer{
+    width: 10%;
+}
+.invioMesaggi{
+    width: 80%;
 }
