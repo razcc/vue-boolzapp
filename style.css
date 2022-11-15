@@ -1,0 +1,51 @@
+#root{
+    height: 100vh;
+    background-image: linear-gradient(green,  grey);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#containerWhatsApp{
+    width: 70%;
+    height: 90%;
+    display: flex;
+}
+#colonnaSininstra{
+    height: 100%;
+    width: 30%;
+    
+}
+#colonnaDestra{
+    height: 100%;
+    width: 70%;
+}
+
+.headerContainer{
+    width: 100%;
+    height: 10%;
+    background-color: red;
+    border: 1px solid black;
+}
+
+#notificheContainer{
+    width: 100%;
+    height: 10%;
+    background-color: blanchedalmond;
+}
+#inputContatti{
+    width: 100%;
+    height: 80%;
+    background-color: rgb(5, 133, 129);
+
+}
+#mesaggiContainer{
+    width: 100%;
+    height: 80%;
+    background-color: blueviolet;
+}
+#invioMesaggiContainer{
+    width: 100%;
+    height: 10%;
+    background-color: blanchedalmond;
+}
