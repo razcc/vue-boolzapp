@@ -1,50 +1,73 @@
-#root{
+#root {
     height: 100vh;
-    background-image: linear-gradient(green,  grey);
+    background: rgb(207, 220, 221);
+    background: linear-gradient(0deg, rgba(207, 220, 221, 1) 80%, rgba(15, 128, 7, 1) 55%);
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#containerWhatsApp{
+#containerWhatsApp {
     width: 70%;
     height: 90%;
     display: flex;
 }
-#colonnaSininstra{
+
+#colonnaSininstra {
     height: 100%;
     width: 30%;
-    
+
 }
-#colonnaDestra{
+
+#colonnaDestra {
     height: 100%;
     width: 70%;
 }
 
-.headerContainer{
+.headerContainer {
     width: 100%;
     height: 10%;
     background-color: red;
     border: 1px solid black;
 }
 
-#notificheContainer{
+#notificheContainer {
     width: 100%;
     height: 10%;
-    background-color: blanchedalmond;
+    display: flex;
+    align-items: center;
+    background-color: aqua;
 }
-#inputContatti{
+.notificheIcon{
+    background-color: rgb(255, 255, 255);
+    color: aqua;   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    padding: 1%;
+
+}
+
+#inputContatti {
     width: 100%;
     height: 80%;
     background-color: rgb(5, 133, 129);
 
 }
-#mesaggiContainer{
+
+#mesaggiContainer {
     width: 100%;
     height: 80%;
-    background-color: blueviolet;
+    background-image: url("img/mine.jpg");
+
 }
-#invioMesaggiContainer{
+
+#invioMesaggiContainer {
     width: 100%;
     height: 10%;
     background-color: blanchedalmond;
