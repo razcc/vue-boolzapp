@@ -27,8 +27,7 @@
 .headerContainer {
     width: 100%;
     height: 10%;
-    background-color: red;
-    border: 1px solid black;
+    background-color:  rgba(234, 234, 234, 1);
 }
 
 #notificheContainer {
@@ -36,11 +35,11 @@
     height: 10%;
     display: flex;
     align-items: center;
-    background-color: aqua;
+    background-color:rgba(142, 218, 252, 1);
 }
 .notificheIcon{
     background-color: rgb(255, 255, 255);
-    color: aqua;   
+    color:rgba(142, 218, 252, 1);   
     display: flex;
     justify-content: center;
     align-items: center;
@@ -56,18 +55,18 @@
 #inputContatti {
     width: 100%;
     height: 80%;
-    background-color: grey;
+    background-color: rgba(234, 234, 234, 1);
     overflow: scroll;
 
 }
 .contattoSingolo{
-    border-bottom: 1px solid rgb(170, 167, 167);
+    
 }
 .contattoSingolo:hover{
     background-color: aqua;
 }
 .avatarContainer{
-    width: 20%;
+    width: 15%;
     margin-left: 10px;
     margin-right: 10px;
     
