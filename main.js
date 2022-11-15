@@ -1,6 +1,7 @@
 var app = new Vue({
     el: "#root",
     data: {
+        indiceCustom: 0,
         contacts: [
             {
                 name: 'Michele',
@@ -166,6 +167,9 @@ var app = new Vue({
         ]
     },
     methods: {
+        iniziaChat(contatti, index){
+            this.indiceCustom = index;
+        },
 
     }
 })

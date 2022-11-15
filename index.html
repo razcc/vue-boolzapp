@@ -72,7 +72,7 @@
                     </div>
 
                     <!-- !Contatti -->
-                    <div class="contattoSingolo my-2 d-flex align-items-center" v-for="contatti in contacts">
+                    <div @click="iniziaChat(contatti, index)" class="contattoSingolo my-2 d-flex align-items-center" v-for="(contatti, index) in contacts">
                         <!-- Avatar -->
                         <div class="avatarContainer">
                             <img :src="contatti.avatar" alt="Avatar">
@@ -93,7 +93,10 @@
                 <div class="headerContainer d-flex align-items-center justify-content-between">
                     <!-- !Avatar e nome variabile in base a chi sto scrivendo -->
                     <div>
-
+                        <div class="avatarContainerMain d-flex align-items-center">
+                            <img :src="contacts[indiceCustom].avatar" alt="Avatar">
+                            <span>{{contacts[indiceCustom].name}}</span>
+                        </div>
                     </div>
 
                     <!-- Icone del header Col destra -->
