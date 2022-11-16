@@ -69,12 +69,12 @@
                         </span>
 
                         <!-- Input Ricerca -->
-                        <input v-model="inputRicercaContatto" type="text" class="form-control" placeholder="Cerca chat" 
-                           >
+                        <input v-model="inputRicercaContatto" type="text" class="form-control" placeholder="Cerca chat">
                     </div>
 
                     <!-- !Contatti -->
-                    <div @click="iniziaChat(contatti, index)" class="contattoSingolo my-2 d-flex align-items-center" v-for="(contatti, index) in contacts">
+                    <div @click="iniziaChat(contatti, index)" class="contattoSingolo my-2 d-flex align-items-center"
+                        v-for="(contatti, index) in contacts">
                         <!-- Avatar -->
                         <div class="avatarContainer">
                             <img :src="contatti.avatar" alt="Avatar">
@@ -83,7 +83,7 @@
                         <!-- Nome -->
                         <div>
                             <div>{{contatti.name}}</div>
-                            <div  class="lastMessage">{{contatti.messages[1]}}</div>
+                            <div class="lastMessage">{{contatti.oraUltimoMesaggio}}</div>
                         </div>
                     </div>
                 </div>
@@ -97,8 +97,10 @@
                     <!-- !Avatar e nome variabile in base a chi sto scrivendo -->
                     <div>
                         <div class="avatarContainerMain d-flex align-items-center">
+                            
                             <img :src="contacts[indiceCustom].avatar" alt="Avatar">
                             <span>{{contacts[indiceCustom].name}}</span>
+                            <div class="lastMessage">{{contacts[indiceCustom].oraUltimoMesaggio}}</div>
                         </div>
                     </div>
 
@@ -112,17 +114,20 @@
 
                 <!-- *Area mesaggi -->
                 <div id="mesaggiContainer">
-                    <div  v-for="(element, index) in contacts[indiceCustom].messages" :class="(element.status == 'sent') ? 'd-flex justify-content-end':'d-flex justify-content-start'">
+                    <div v-for="(element, index) in contacts[indiceCustom].messages"
+                        :class="(element.status == 'sent') ? 'd-flex justify-content-end':'d-flex justify-content-start'">
 
-                        <div id="mesSIngle" data-bs-toggle="dropdown" aria-expanded="false"  :class="(element.status == 'sent') ? 'messInviati':'messRicevuti' ">
+                        <div id="mesSIngle" data-bs-toggle="dropdown" aria-expanded="false"
+                            :class="(element.status == 'sent') ? 'messInviati':'messRicevuti' ">
                             {{element.message}}
-                            <i  class=" dropdown-toggle ms-2"></i>
+                            <i class=" dropdown-toggle ms-2"></i>
 
                             <ul class="dropdown-menu dropdown-menu-end">
                                 <li><button class="dropdown-item" type="button">Message info</button></li>
-                                <li><button @click="removeMessage(index)" class="dropdown-item" type="button">Delete message</button></li>
-                               
-                              </ul>
+                                <li><button @click="removeMessage(index)" class="dropdown-item" type="button">Delete
+                                        message</button></li>
+
+                            </ul>
 
                         </div>
                     </div>
@@ -161,6 +166,10 @@
     <!-- VUE -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 
+    <!-- Day.js -->
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+    <script>dayjs().format()</script>
+
     <!-- Script Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
@@ -169,7 +178,7 @@
     <!-- Mio Java -->
     <script type="text/javascript" src="main.js"></script>
 
-    
+
 
 </body>
 

@@ -5,12 +5,15 @@ var app = new Vue({
         variabileMesaggio: "",
         inputRicercaContatto: "",
         variabile: 0,
+        
         contacts: [
             {
                 name: 'Michele',
                 avatar: 'img/avatar_1.jpg',
                 visible: true,
+                oraUltimoMesaggio: ``,
                 messages: [
+                    
 
                 ],
             },
@@ -18,6 +21,7 @@ var app = new Vue({
                 name: 'Fabio',
                 avatar: 'img/avatar_2.jpg',
                 visible: true,
+                oraUltimoMesaggio: ``,
                 messages: [
 
 
@@ -27,6 +31,7 @@ var app = new Vue({
                 name: 'Samuele',
                 avatar: 'img/avatar_3.jpg',
                 visible: true,
+                oraUltimoMesaggio: ``,
                 messages: [
 
                 ],
@@ -35,6 +40,7 @@ var app = new Vue({
                 name: 'Alessandro B.',
                 avatar: 'img/avatar_4.jpg',
                 visible: true,
+                oraUltimoMesaggio: ``,
                 messages: [
 
                 ],
@@ -43,6 +49,7 @@ var app = new Vue({
                 name: 'Alessandro L.',
                 avatar: 'img/avatar_5.jpg',
                 visible: true,
+                oraUltimoMesaggio: ``,
                 messages: [
 
                 ],
@@ -51,6 +58,7 @@ var app = new Vue({
                 name: 'Claudia',
                 avatar: 'img/avatar_6.jpg',
                 visible: true,
+                oraUltimoMesaggio: ``,
                 messages: [
 
 
@@ -60,6 +68,7 @@ var app = new Vue({
                 name: 'Federico',
                 avatar: 'img/avatar_7.jpg',
                 visible: true,
+                oraUltimoMesaggio: ``,
                 messages: [
 
 
@@ -69,6 +78,7 @@ var app = new Vue({
                 name: 'Davide',
                 avatar: 'img/avatar_8.jpg',
                 visible: true,
+                oraUltimoMesaggio: ``,
                 messages: [
 
                 ],
@@ -101,11 +111,19 @@ var app = new Vue({
 
                 });
             }, 2000)
+            this.contacts[this.indiceCustom].oraUltimoMesaggio = this.temporizzazione();
+
+            
         },
         removeMessage(index) {
             this.contacts[this.indiceCustom].messages.splice(index, 1)
         },
-
+        temporizzazione(){
+            var now = dayjs().format('H:mm');
+            console.log(now)
+            return now
+            
+        },
     }
 })
 
