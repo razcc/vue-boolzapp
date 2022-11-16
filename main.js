@@ -2,8 +2,9 @@ var app = new Vue({
     el: "#root",
     data: {
         indiceCustom: 0,
-        indiceCustom2: 0,
         variabileMesaggio: "",
+        inputRicercaContatto: "",
+        variabile: 0,
         contacts: [
             {
                 name: 'Michele',
@@ -77,22 +78,37 @@ var app = new Vue({
     methods: {
         iniziaChat(contatti, index) {
             this.indiceCustom = index;
-            this.variabileMesaggio= "";
+            this.variabileMesaggio = "";
         },
-        keyEvent() {           
-            this.timingFunction()
+        keyEvent() {
+            let rafa = this.contacts[this.indiceCustom].messages;
+            
+            rafa.push({
+                date: "",
+                status: "sent",
+                message: this.variabileMesaggio
+
+            });
+            console.log(this.contacts[this.indiceCustom].messages)
+
+            this.variabileMesaggio = "";
+            setTimeout(function () {
+                console.log(rafa)
+                rafa.push({
+                    date: "--",
+                    status: "ricived",
+                    message: "Ok"
+
+                });
+            }, 2000)
+        },
+        removeMessage(index) {
+            this.contacts[this.indiceCustom].messages.splice(index, 1)
         },
 
-        timingFunction(){
-            setTimeout(function(){
-                this.contacts[this.indiceCustom].messages.push({
-                    date: "--",
-                    status: "sent",
-                    message: this.variabileMesaggio
-                });
-                console.log( this.contacts[this.indiceCustom].messages)
-            },1000)
-        },
     }
 })
-s
+
+
+
+

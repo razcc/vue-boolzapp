@@ -26,7 +26,7 @@
             <!-- ^colonna di sinistra -->
             <div id="colonnaSininstra">
                 <!-- *Header -->
-                <div class="headerContainer d-flex align-items-center" >
+                <div class="headerContainer d-flex align-items-center">
                     <div class="my-2 d-flex align-items-center justify-content-between">
                         <!-- Avatar -->
                         <div class="avatarContainer d-flex align-items-center">
@@ -45,9 +45,11 @@
 
                 <!-- *Notifiche -->
                 <div id="notificheContainer">
+
                     <div class="notificheIcon">
-                        <i class="fa-regular fa-bell-slash"></i>
+                        <i class="fa-solid fa-bell-slash"></i>
                     </div>
+
                     <div>
                         <div>Ricevi notifiche nuovi messaggi</div>
                         <div>
@@ -67,8 +69,8 @@
                         </span>
 
                         <!-- Input Ricerca -->
-                        <input type="text" class="form-control" placeholder="Cerca chat" aria-label="Username"
-                            aria-describedby="addon-wrapping">
+                        <input v-model="inputRicercaContatto" type="text" class="form-control" placeholder="Cerca chat" 
+                           >
                     </div>
 
                     <!-- !Contatti -->
@@ -80,7 +82,8 @@
 
                         <!-- Nome -->
                         <div>
-                            <span>{{contatti.name}}</span>
+                            <div>{{contatti.name}}</div>
+                            <div  class="lastMessage">{{contatti.messages[1]}}</div>
                         </div>
                     </div>
                 </div>
@@ -109,19 +112,24 @@
 
                 <!-- *Area mesaggi -->
                 <div id="mesaggiContainer">
-                    <div >
-                        <!-- Mio mesaggio -->
-                        <div>
+                    <div  v-for="(element, index) in contacts[indiceCustom].messages" :class="(element.status == 'sent') ? 'd-flex justify-content-end':'d-flex justify-content-start'">
 
-                        </div>
+                        <div id="mesSIngle" data-bs-toggle="dropdown" aria-expanded="false"  :class="(element.status == 'sent') ? 'messInviati':'messRicevuti' ">
+                            {{element.message}}
+                            <i  class=" dropdown-toggle ms-2"></i>
 
-                        <!-- Risposta -->
-                        <div>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><button class="dropdown-item" type="button">Message info</button></li>
+                                <li><button @click="removeMessage(index)" class="dropdown-item" type="button">Delete message</button></li>
+                               
+                              </ul>
 
                         </div>
                     </div>
+
+
                 </div>
-              
+
 
                 <!-- *Input Invio mesaggi -->
                 <div id="invioMesaggiContainer">
@@ -133,7 +141,8 @@
 
                     <!-- Input mesaggi Invio -->
                     <div class="invioMesaggi px-2">
-                        <input v-model="variabileMesaggio" @keyup.enter="keyEvent" class="w-100" type="text" placeholder="Invia Mesaggio">
+                        <input v-model="variabileMesaggio" @keyup.enter="keyEvent" class="w-100" type="text"
+                            placeholder="Invia Mesaggio">
                     </div>
 
                     <!-- Audio icon -->
@@ -159,6 +168,8 @@
 
     <!-- Mio Java -->
     <script type="text/javascript" src="main.js"></script>
+
+    
 
 </body>
 
