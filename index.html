@@ -69,11 +69,12 @@
                         </span>
 
                         <!-- Input Ricerca -->
-                        <input v-model="inputRicercaContatto" type="text" class="form-control" placeholder="Cerca chat">
+                        <input @keyup="ricercaContatti" v-model="inputRicercaContatto" type="text" class="form-control"
+                            placeholder="Cerca chat">
                     </div>
 
                     <!-- !Contatti -->
-                    <div @click="iniziaChat(contatti, index)" class="contattoSingolo my-2 d-flex align-items-center"
+                    <div v-if="(contatti.visible)" @click="iniziaChat(contatti, index)" class="contattoSingolo my-2 d-flex align-items-center"
                         v-for="(contatti, index) in contacts">
                         <!-- Avatar -->
                         <div class="avatarContainer">
@@ -83,7 +84,9 @@
                         <!-- Nome -->
                         <div>
                             <div>{{contatti.name}}</div>
-                            <div class="lastMessage">{{contatti.oraUltimoMesaggio}}</div>
+                            <div v-if="(contatti.messages.length > 0 )" class="lastMessage">
+                                {{contatti.messages[contatti.messages.length-1].message}}
+                            </div>
                         </div>
                     </div>
                 </div>

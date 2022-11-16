@@ -91,10 +91,15 @@ var app = new Vue({
             this.variabileMesaggio = "";
         },
         keyEvent() {
-            let rafa = this.contacts[this.indiceCustom].messages;
+           
+            let indiceUltimoMesaggio = this.ultimoMesaggioInviato()
+            this.contacts[this.indiceCustom].indiceUltimoMesaggio = indiceUltimoMesaggio
+            console.log( this.contacts[this.indiceCustom])
+
+            let percorsoMessages = this.contacts[this.indiceCustom].messages;
             let variabileOra = this.temporizzazione(); 
-            
-            rafa.push({
+
+            percorsoMessages.push({
                 date: variabileOra,
                 status: "sent",
                 message: this.variabileMesaggio
@@ -103,9 +108,10 @@ var app = new Vue({
             console.log(this.contacts[this.indiceCustom].messages)
 
             this.variabileMesaggio = "";
+
             setTimeout(function () {
-                console.log(rafa)
-                rafa.push({
+                console.log(percorsoMessages)
+                percorsoMessages.push({
                     date: variabileOra,
                     status: "ricived",
                     message: "Ok"
@@ -115,17 +121,36 @@ var app = new Vue({
             
             console.log(variabileOra)
             this.contacts[this.indiceCustom].oraUltimoMesaggio = this.temporizzazione();
+            
+            
 
             
         },
         removeMessage(index) {
             this.contacts[this.indiceCustom].messages.splice(index, 1)
+            
         },
         temporizzazione(){
             var now = dayjs().format('H:mm');
             return now
             
         },
+        ultimoMesaggioInviato(){
+            let lastMes =  this.contacts[this.indiceCustom].messages.length
+            return lastMes
+        },
+        ricercaContatti(){
+            this.contacts.forEach((element) => {
+
+                if(element.name.includes(this.inputRicercaContatto)){
+                    element.visible= true;
+                }else{
+                    element.visible= false;
+                }
+
+                
+            })
+        }
     }
 })
 
