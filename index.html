@@ -30,7 +30,7 @@
                     <div class="my-2 d-flex align-items-center justify-content-between">
                         <!-- Avatar -->
                         <div class="avatarContainer d-flex align-items-center">
-                            <img src="img/avatar_io.jpg" alt="Avatar">
+                            <img id="imgAvatarContatti" src="img/avatar_io.jpg" alt="Avatar">
                             <span>Sofia</span>
                         </div>
 
@@ -77,7 +77,7 @@
                         v-for="(contatti, index) in contacts">
                         <!-- Avatar -->
                         <div class="avatarContainer">
-                            <img :src="contatti.avatar" alt="Avatar">
+                            <img id="imgAvatarContatti" :src="contatti.avatar" alt="Avatar">
                         </div>
 
                         <!-- Nome -->
@@ -95,17 +95,25 @@
                 <!-- *Header  -->
                 <div class="headerContainer d-flex align-items-center justify-content-between">
                     <!-- !Avatar e nome variabile in base a chi sto scrivendo -->
-                    <div>
-                        <div class="avatarContainerMain d-flex align-items-center">
-                            
-                            <img :src="contacts[indiceCustom].avatar" alt="Avatar">
-                            <span>{{contacts[indiceCustom].name}}</span>
-                            <div class="lastMessage">{{contacts[indiceCustom].oraUltimoMesaggio}}</div>
+
+                    <div class="avatarContainerDinamicoColDestra d-flex align-items-center">
+                        <div class="avatarContainerMain">
+                            <img id="imgAvatarContainerDinamicoColDestra" :src="contacts[indiceCustom].avatar"
+                                alt="Avatar">
                         </div>
+                        <div>
+                            <div>{{contacts[indiceCustom].name}}</div>
+                            <div v-if="contacts[indiceCustom].oraUltimoMesaggio"
+                                class="lastMessage d-flex align-items-center">Ultimo mesaggio alle
+                                {{contacts[indiceCustom].oraUltimoMesaggio}}
+                            </div>
+                        </div>
+
                     </div>
 
+
                     <!-- Icone del header Col destra -->
-                    <div>
+                    <div class="avatarContainerDinamicoColDestra d-flex justify-content-end">
                         <i class="fa-solid fa-magnifying-glass mx-2"></i>
                         <i class="fa-solid fa-paperclip mx-2"></i>
                         <i class="fa-solid fa-ellipsis-vertical mx-2"></i>
@@ -120,7 +128,11 @@
                         <div id="mesSIngle" data-bs-toggle="dropdown" aria-expanded="false"
                             :class="(element.status == 'sent') ? 'messInviati':'messRicevuti' ">
                             {{element.message}}
-                            <i class=" dropdown-toggle ms-2"></i>
+
+                            <div class="d-flex flex-column ms-2">
+                                <i class=" dropdown-toggle ms-2"></i>
+                                <span class="lastMessage">{{element.date}}</span>
+                            </div>
 
                             <ul class="dropdown-menu dropdown-menu-end">
                                 <li><button class="dropdown-item" type="button">Message info</button></li>

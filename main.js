@@ -92,9 +92,10 @@ var app = new Vue({
         },
         keyEvent() {
             let rafa = this.contacts[this.indiceCustom].messages;
+            let variabileOra = this.temporizzazione(); 
             
             rafa.push({
-                date: "",
+                date: variabileOra,
                 status: "sent",
                 message: this.variabileMesaggio
 
@@ -105,12 +106,14 @@ var app = new Vue({
             setTimeout(function () {
                 console.log(rafa)
                 rafa.push({
-                    date: "--",
+                    date: variabileOra,
                     status: "ricived",
                     message: "Ok"
 
                 });
             }, 2000)
+            
+            console.log(variabileOra)
             this.contacts[this.indiceCustom].oraUltimoMesaggio = this.temporizzazione();
 
             
@@ -120,7 +123,6 @@ var app = new Vue({
         },
         temporizzazione(){
             var now = dayjs().format('H:mm');
-            console.log(now)
             return now
             
         },
