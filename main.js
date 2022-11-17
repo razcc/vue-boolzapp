@@ -95,9 +95,7 @@ var app = new Vue({
 
         // Pressione del tasto Enter per invio mesaggio
         keyEvent() {
-            // Salvataggio del ultimo emsaggio inviato
-            let indiceUltimoMesaggio = this.ultimoMesaggioInviato();
-            this.contacts[this.indiceCustom].indiceUltimoMesaggio = indiceUltimoMesaggio;
+           
 
             // Inizializzazione del percorso necessario per raggiungere array messages
             let percorsoMessages = this.contacts[this.indiceCustom].messages;
@@ -138,12 +136,6 @@ var app = new Vue({
             var now = dayjs().format('H:mm');
             return now
 
-        },
-
-        // Funzione per avere sempre l'ultimo mesaggio dell'array messages
-        ultimoMesaggioInviato() {
-            let lastMes = this.contacts[this.indiceCustom].messages.length
-            return lastMes
         },
 
         // Funzione per Ricerca fra la lista dei contatti
