@@ -4,8 +4,8 @@ var app = new Vue({
         indiceCustom: 0,
         variabileMesaggio: "",
         inputRicercaContatto: "",
-        variabile: 0,
-        
+
+
         contacts: [
             {
                 name: 'Michele',
@@ -13,7 +13,7 @@ var app = new Vue({
                 visible: true,
                 oraUltimoMesaggio: ``,
                 messages: [
-                    
+
 
                 ],
             },
@@ -86,18 +86,24 @@ var app = new Vue({
         ]
     },
     methods: {
-        iniziaChat(contatti, index) {
+        // Selezione della chat
+        chatSelection(contatti, index) {
+            // Modifica del indice custom
             this.indiceCustom = index;
             this.variabileMesaggio = "";
         },
-        keyEvent() {
-           
-            let indiceUltimoMesaggio = this.ultimoMesaggioInviato()
-            this.contacts[this.indiceCustom].indiceUltimoMesaggio = indiceUltimoMesaggio
-            console.log( this.contacts[this.indiceCustom])
 
+        // Pressione del tasto Enter per invio mesaggio
+        keyEvent() {
+            // Salvataggio del ultimo emsaggio inviato
+            let indiceUltimoMesaggio = this.ultimoMesaggioInviato();
+            this.contacts[this.indiceCustom].indiceUltimoMesaggio = indiceUltimoMesaggio;
+
+            // Inizializzazione del percorso necessario per raggiungere array messages
             let percorsoMessages = this.contacts[this.indiceCustom].messages;
-            let variabileOra = this.temporizzazione(); 
+
+            // Inizializzazione Dell'orario del singolo mesaggio inviato
+            let variabileOra = this.temporizzazione();
 
             percorsoMessages.push({
                 date: variabileOra,
@@ -105,51 +111,51 @@ var app = new Vue({
                 message: this.variabileMesaggio
 
             });
-            console.log(this.contacts[this.indiceCustom].messages)
 
+            // Svuotamento del campo input mesaggi
             this.variabileMesaggio = "";
 
+            // Temporizzazione della risposta al mesaggio
             setTimeout(function () {
                 console.log(percorsoMessages)
                 percorsoMessages.push({
                     date: variabileOra,
                     status: "ricived",
                     message: "Ok"
-
                 });
             }, 2000)
-            
-            console.log(variabileOra)
-            this.contacts[this.indiceCustom].oraUltimoMesaggio = this.temporizzazione();
-            
-            
 
-            
+            this.contacts[this.indiceCustom].oraUltimoMesaggio = variabileOra;
         },
+
+        // Rimozione del measggio con il DropDown
         removeMessage(index) {
             this.contacts[this.indiceCustom].messages.splice(index, 1)
-            
         },
-        temporizzazione(){
+
+        // Creazione del ora e minuto
+        temporizzazione() {
             var now = dayjs().format('H:mm');
             return now
-            
+
         },
-        ultimoMesaggioInviato(){
-            let lastMes =  this.contacts[this.indiceCustom].messages.length
+
+        // Funzione per avere sempre l'ultimo mesaggio dell'array messages
+        ultimoMesaggioInviato() {
+            let lastMes = this.contacts[this.indiceCustom].messages.length
             return lastMes
         },
-        ricercaContatti(){
+
+        // Funzione per Ricerca fra la lista dei contatti
+        ricercaContatti() {
             this.contacts.forEach((element) => {
 
-                if(element.name.includes(this.inputRicercaContatto)){
-                    element.visible= true;
-                }else{
-                    element.visible= false;
+                if (element.name.includes(this.inputRicercaContatto)) {
+                    element.visible = true;
+                } else {
+                    element.visible = false;
                 }
-
-                
-            })
+            });
         }
     }
 })

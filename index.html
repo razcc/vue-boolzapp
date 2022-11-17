@@ -77,7 +77,7 @@
                     </div>
 
                     <!-- Contatti -->
-                    <div v-if="(contatti.visible)" @click="iniziaChat(contatti, index)"
+                    <div v-if="(contatti.visible)" @click="chatSelection(contatti, index)"
                         class="contattoSingolo my-2 d-flex align-items-center" v-for="(contatti, index) in contacts">
                         <!-- Avatar -->
                         <div class="contAvatar">
@@ -196,9 +196,6 @@
 
     <!-- Mio Java -->
     <script type="text/javascript" src="main.js"></script>
-
-
-
 </body>
 
 </html>
