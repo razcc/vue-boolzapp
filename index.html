@@ -22,34 +22,37 @@
 
 <body>
     <div id="root">
-        <div id="containerWhatsApp">
-            <!-- ^colonna di sinistra -->
-            <div id="colonnaSininstra">
-                <!-- *Header -->
-                <div class="headerContainer d-flex align-items-center">
-                    <div class="my-2 d-flex align-items-center justify-content-between">
-                        <!-- Avatar -->
-                        <div class="avatarContainer d-flex align-items-center">
-                            <img id="imgAvatarContatti" src="img/avatar_io.jpg" alt="Avatar">
-                            <span>Sofia</span>
-                        </div>
+        <div id="contWebApp">
 
-                        <!-- Icone -->
-                        <div>
-                            <i class="fa-solid fa-circle-notch mx-2"></i>
-                            <i class="fa-solid fa-message mx-2"></i>
-                            <i class="fa-solid fa-ellipsis-vertical mx-2"></i>
-                        </div>
+            <!-- !Colonna di sinistra -->
+            <div class="w-25 h-100">
+
+                <!-- *Header -->
+                <div class="contHeader d-flex align-items-center justify-content-between">
+                    <!-- Avatar -->
+                    <div class="contAvatar d-flex align-items-center">
+                        <img src="img/avatar_io.jpg" alt="Avatar">
+                        <span>Sofia</span>
+                    </div>
+
+                    <!-- Icone -->
+                    <div>
+                        <i class="fa-solid fa-circle-notch mx-1 fa-sm"></i>
+                        <i class="fa-solid fa-message mx-1 fa-sm"></i>
+                        <i class="fa-solid fa-ellipsis-vertical mx-1 fa-sm"></i>
                     </div>
                 </div>
 
-                <!-- *Notifiche -->
-                <div id="notificheContainer">
 
+                <!-- *Notifiche -->
+                <div id="contNotifiche">
+
+                    <!-- Icona -->
                     <div class="notificheIcon">
                         <i class="fa-solid fa-bell-slash"></i>
                     </div>
 
+                    <!-- Testo -->
                     <div>
                         <div>Ricevi notifiche nuovi messaggi</div>
                         <div>
@@ -60,8 +63,8 @@
                 </div>
 
                 <!-- *Main -->
-                <div id="inputContatti">
-                    <!-- !Input -->
+                <div id="contInputAndContatti">
+                    <!-- Input -->
                     <div class="input-group flex-nowrap">
                         <!-- Icona ricerca -->
                         <span class="input-group-text" id="addon-wrapping">
@@ -73,12 +76,12 @@
                             placeholder="Cerca chat">
                     </div>
 
-                    <!-- !Contatti -->
-                    <div v-if="(contatti.visible)" @click="iniziaChat(contatti, index)" class="contattoSingolo my-2 d-flex align-items-center"
-                        v-for="(contatti, index) in contacts">
+                    <!-- Contatti -->
+                    <div v-if="(contatti.visible)" @click="iniziaChat(contatti, index)"
+                        class="contattoSingolo my-2 d-flex align-items-center" v-for="(contatti, index) in contacts">
                         <!-- Avatar -->
-                        <div class="avatarContainer">
-                            <img id="imgAvatarContatti" :src="contatti.avatar" alt="Avatar">
+                        <div class="contAvatar">
+                            <img :src="contatti.avatar" alt="Avatar">
                         </div>
 
                         <!-- Nome -->
@@ -92,31 +95,31 @@
                 </div>
             </div>
 
-            <!-- ^Colonna di destra -->
-            <div id="colonnaDestra">
+            <!-- !Colonna di destra -->
+            <div class="w-75 h-100">
 
                 <!-- *Header  -->
-                <div class="headerContainer d-flex align-items-center justify-content-between">
-                    <!-- !Avatar e nome variabile in base a chi sto scrivendo -->
+                <div class="contHeader d-flex align-items-center justify-content-between">
 
-                    <div class="avatarContainerDinamicoColDestra d-flex align-items-center">
-                        <div class="avatarContainerMain">
-                            <img id="imgAvatarContainerDinamicoColDestra" :src="contacts[indiceCustom].avatar"
+                    <!-- Avatar e nome variabile in base a chi sto scrivendo -->
+                    <div class="w-25 d-flex align-items-center">
+                        <!-- Avatar -->
+                        <div class="w-25 me-2">
+                            <img :src="contacts[indiceCustom].avatar"
                                 alt="Avatar">
                         </div>
-                        <div>
+                        <!-- Nome e ora ultimo mesaggio -->
+                        <div class="w-75">
                             <div>{{contacts[indiceCustom].name}}</div>
                             <div v-if="contacts[indiceCustom].oraUltimoMesaggio"
                                 class="lastMessage d-flex align-items-center">Ultimo mesaggio alle
                                 {{contacts[indiceCustom].oraUltimoMesaggio}}
                             </div>
                         </div>
-
                     </div>
 
-
                     <!-- Icone del header Col destra -->
-                    <div class="avatarContainerDinamicoColDestra d-flex justify-content-end">
+                    <div class="d-flex justify-content-end">
                         <i class="fa-solid fa-magnifying-glass mx-2"></i>
                         <i class="fa-solid fa-paperclip mx-2"></i>
                         <i class="fa-solid fa-ellipsis-vertical mx-2"></i>
@@ -124,35 +127,36 @@
                 </div>
 
                 <!-- *Area mesaggi -->
-                <div id="mesaggiContainer">
+                <div id="contMesaggi">
                     <div v-for="(element, index) in contacts[indiceCustom].messages"
                         :class="(element.status == 'sent') ? 'd-flex justify-content-end':'d-flex justify-content-start'">
 
                         <div id="mesSIngle" data-bs-toggle="dropdown" aria-expanded="false"
                             :class="(element.status == 'sent') ? 'messInviati':'messRicevuti' ">
-                            {{element.message}}
 
+                            <!-- Testo Mesaggio Singolo -->
+                            <span>{{element.message}}</span>
+                            
+                            <!-- Icono del dropDown e orario Singolo mesaggio -->
                             <div class="d-flex flex-column ms-2">
                                 <i class=" dropdown-toggle ms-2"></i>
                                 <span class="lastMessage">{{element.date}}</span>
                             </div>
 
+                            <!-- DropDown -->
                             <ul class="dropdown-menu dropdown-menu-end">
                                 <li><button class="dropdown-item" type="button">Message info</button></li>
                                 <li><button @click="removeMessage(index)" class="dropdown-item" type="button">Delete
                                         message</button></li>
 
                             </ul>
-
                         </div>
                     </div>
-
-
                 </div>
 
 
                 <!-- *Input Invio mesaggi -->
-                <div id="invioMesaggiContainer">
+                <div id="contInputMess">
 
                     <!-- icone smile faccine -->
                     <div class="d-flex justify-content-center align-items-center smileContainer">
