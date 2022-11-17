@@ -105,15 +105,26 @@
                     <div class="w-25 d-flex align-items-center">
                         <!-- Avatar -->
                         <div class="w-25 me-2">
-                            <img :src="contacts[indiceCustom].avatar"
-                                alt="Avatar">
+                            <img :src="contacts[indiceCustom].avatar" alt="Avatar">
                         </div>
                         <!-- Nome e ora ultimo mesaggio -->
                         <div class="w-75">
                             <div>{{contacts[indiceCustom].name}}</div>
+
                             <div v-if="contacts[indiceCustom].oraUltimoMesaggio"
-                                class="lastMessage d-flex align-items-center">Ultimo mesaggio alle
-                                {{contacts[indiceCustom].oraUltimoMesaggio}}
+                                class="lastMessage d-flex align-items-center">
+
+                                <span v-if="varStaScrivendo && statusOnline == false && orarioUltimoMesaggio == false"> Sta Scrivendo... </span>
+
+                                <span v-if="statusOnline">
+                                    Online
+                                </span>
+
+                                <span v-if="orarioUltimoMesaggio">
+                                    Ultimo mesaggio alle {{contacts[indiceCustom].oraUltimoMesaggio}}
+                                </span>
+
+
                             </div>
                         </div>
                     </div>
@@ -136,7 +147,7 @@
 
                             <!-- Testo Mesaggio Singolo -->
                             <span>{{element.message}}</span>
-                            
+
                             <!-- Icono del dropDown e orario Singolo mesaggio -->
                             <div class="d-flex flex-column ms-2">
                                 <i class=" dropdown-toggle ms-2"></i>
@@ -171,7 +182,8 @@
 
                     <!-- Audio icon -->
                     <div class="microphoneContainer d-flex justify-content-center align-items-center">
-                        <i class="fa-solid fa-microphone"></i>
+                        <i v-if='(variabileMesaggio.trim() == "")' class="fa-solid fa-microphone"></i>
+                        <i v-else class="fa-solid fa-paper-plane"></i>
                     </div>
                 </div>
 

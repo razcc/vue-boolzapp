@@ -5,6 +5,13 @@ var app = new Vue({
         variabileMesaggio: "",
         inputRicercaContatto: "",
 
+        varStaScrivendo: false,
+
+        statusOnline: false,
+
+        orarioUltimoMesaggio: false,
+
+
 
         contacts: [
             {
@@ -12,6 +19,7 @@ var app = new Vue({
                 avatar: 'img/avatar_1.jpg',
                 visible: true,
                 oraUltimoMesaggio: ``,
+
                 messages: [
 
 
@@ -85,6 +93,7 @@ var app = new Vue({
             }
         ]
     },
+
     methods: {
         // Selezione della chat
         chatSelection(contatti, index) {
@@ -103,27 +112,31 @@ var app = new Vue({
             // Inizializzazione Dell'orario del singolo mesaggio inviato
             let variabileOra = this.temporizzazione();
 
-            percorsoMessages.push({
-                date: variabileOra,
-                status: "sent",
-                message: this.variabileMesaggio
-
-            });
-
-            // Svuotamento del campo input mesaggi
-            this.variabileMesaggio = "";
-
-            // Temporizzazione della risposta al mesaggio
-            setTimeout(function () {
-                console.log(percorsoMessages)
+            if (this.variabileMesaggio.trim() != "") {
                 percorsoMessages.push({
                     date: variabileOra,
-                    status: "ricived",
-                    message: "Ok"
+                    status: "sent",
+                    message: this.variabileMesaggio
                 });
-            }, 2000)
 
-            this.contacts[this.indiceCustom].oraUltimoMesaggio = variabileOra;
+                // Svuotamento del campo input mesaggi
+                this.variabileMesaggio = "";
+
+                // Temporizzazione della risposta al mesaggio
+                setTimeout(function () {
+                    console.log(percorsoMessages)
+                    percorsoMessages.push({
+                        date: variabileOra,
+                        status: "ricived",
+                        message: "Ok"
+                    });
+
+
+                }, 4000)    
+                this.contacts[this.indiceCustom].oraUltimoMesaggio = variabileOra;
+            }
+
+
         },
 
         // Rimozione del measggio con il DropDown
@@ -148,7 +161,17 @@ var app = new Vue({
                     element.visible = false;
                 }
             });
-        }
+        },
+
+        statusOnine() {
+            setTimeout(function () {
+
+            }, 3000);
+
+            setTimeout(function () {
+
+            }, 4000);
+        },
     }
 })
 
